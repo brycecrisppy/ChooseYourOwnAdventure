@@ -4,9 +4,11 @@
 class Map
 {
     public:
-        bool createMap(std::vector<char> level, int height, int width);
+        Map();
 
-        void printMap(int index);
+        std::vector<std::vector<char>> createMap(int rows, int cols);
+
+        void printMap(std::vector<std::vector<char>> map);
 
     private:
         size_t size = 0;
@@ -14,5 +16,5 @@ class Map
 
         int levelAmt = 0;
 
-        std::vector<std::vector<char>> levelCollection;
+        std::vector<std::vector<std::vector<char>>> levelCollection;
 };
