@@ -1,7 +1,5 @@
 #include "./headers/map.hpp"
 
-Map::Map() {}
-
 std::vector<std::vector<char>> Map::createRandomMap(std::string mapName, int rows, int cols) 
 {
     std::vector<std::vector<char>> map;
@@ -25,4 +23,20 @@ void Map::printMap(std::vector<std::vector<char>> map)
         }
         std::cout << "\n";
     }
+}
+
+std::vector<std::vector<char>> Map::drawEntity(std::string entityName, std::vector<std::vector<char>> map, int x, int y, char symbol, bool initialDraw)
+{
+    if (!initialDraw) {
+        map[entityPositions[entityName]["x"]][entityPositions[entityName]["y"]] = '.';
+        map[x][y] = symbol;
+        entityPositions[entityName]["x"] = x;
+        entityPositions[entityName]["y"] = y;
+    } else {
+        map[x][y] = symbol;
+        entityPositions[entityName]["x"] = x;
+        entityPositions[entityName]["y"] = y; 
+    }
+
+    return map;
 }

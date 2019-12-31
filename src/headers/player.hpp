@@ -1,11 +1,13 @@
+#include <vector>
 #include <string>
 
 class Player
 {
     public:
-        Player(std::string name, int health);
+        std::string name;
+        char symbol;
+        Player(std::string name, char symbol, int health);
 
     private:
-        std::string name;
-        int health;
+        int health; 
 };
