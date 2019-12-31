@@ -1,13 +1,28 @@
-#include "map.hpp"
+#include "./headers/map.hpp"
 
-bool Map::createMap(std::vector<char> level, int height, int width) 
+Map::Map() {}
+
+std::vector<std::vector<char>> Map::createRandomMap(std::string mapName, int rows, int cols) 
 {
-    //levelCollection.push_back();
+    std::vector<std::vector<char>> map;
+    map.resize(rows, std::vector<char>(cols, '.'));
 
-    return true;
+    levelCollection[mapName] = map;
+
+    return map;
 }
 
-void Map::printMap(int index)
+void Map::addCustomMap(std::string mapName, std::vector<std::vector<char>> map)
 {
+    levelCollection[mapName] = map;
+}
 
+void Map::printMap(std::vector<std::vector<char>> map)
+{
+    for (int i=0; i<map.size(); i++) {
+        for (int j=0; j<map[0].size(); j++) {
+            std::cout << map[i][j];
+        }
+        std::cout << "\n";
+    }
 }
