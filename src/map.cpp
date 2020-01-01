@@ -35,7 +35,7 @@ std::vector<std::vector<char>> Map::drawEntity(std::string entityName, std::vect
     } else {
         map[x][y] = symbol;
         entityPositions[entityName]["x"] = x;
-        entityPositions[entityName]["y"] = y; 
+        entityPositions[entityName]["y"] = y;
     }
 
     return map;

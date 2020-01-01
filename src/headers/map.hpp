@@ -11,7 +11,13 @@ class Map
 
         void printMap(std::vector<std::vector<char>> map);
 
-        std::vector<std::vector<char>> drawEntity(std::string entityName, std::vector<std::vector<char>> map, int x, int y, char symbol, bool initialDraw);
+        int getXPosition(std::string entityName) {return entityPositions[entityName]["x"];}
+
+        int getYPosition(std::string entityName) {return entityPositions[entityName]["y"];}
+
+        std::vector<std::vector<char>> getMap(std::string mapName) {return levelCollection[mapName];}
+
+        std::vector<std::vector<char>> drawEntity(std::string entityName,  std::vector<std::vector<char>> map, int x, int y, char symbol, bool initialDraw);
 
     private:
         size_t size = 0;

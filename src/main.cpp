@@ -21,30 +21,52 @@ int main()
       {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}
    };
 
-   std::vector<std::vector<char>> randLevel2 = map.createRandomMap("blankMap1", 10, 10);
+   map.addCustomMap("customLevel1", customLevel1);
 
    customLevel1 = map.drawEntity(player.name, customLevel1, 2, 2, player.symbol, true);
+   map.addCustomMap("customLevel1", customLevel1);
 
-   for (int i=0; i<=5; i++) {
-      printf("\033c");
-      customLevel1 = map.drawEntity(player.name, customLevel1, 3, 3, player.symbol, false);
-
+   int x, y;
+   for (;;) {
       map.printMap(customLevel1);
-      printf("\033c");
+      std::vector<std::string> answers = {"North", "East", "South", "West"};
+      std::string answer = dialogue(answers, "Which direction would you like to walk: ");
 
-      customLevel1 = map.drawEntity(player.name, customLevel1, 4, 4, player.symbol, false);
+      if (answer == "north") {
+         x = -1;
+         y = 0;
+      } else if (answer == "east") {
+         x = 0;
+         y = 1;
+      } else if (answer == "south") {
+         x = 1;
+         y = 0;
+      } else if (answer == "west") {
+         x = 0;
+         y = -1;
+      }
 
-      map.printMap(customLevel1);
+      int playerX = map.getXPosition(player.name);
+      int playerY = map.getYPosition(player.name);
+
+      std::vector<std::vector<char>> mapCopy = map.getMap("customLevel1");
+      int mapWidth = mapCopy[0].size();
+      int mapHeight = mapCopy.size();
+
+      std::cout << "Player X: " << playerX << " Player Y: " << playerY << "\n";
+
+      if (playerX + x > mapWidth || playerX + x < 1) {
+         std::cout << "Sorry, you cannot move this way." << "\n";
+      } else if (playerY + y > mapHeight || playerY + y < 1) {
+         std::cout << "Sorry, you cannot move this way." << "\n";
+      } else {
+         customLevel1 = map.drawEntity(player.name, customLevel1, playerX+x, playerY+y, player.symbol, false);
+
+         std::cout << "Moved " << answer <<  " x: " << x << " y: " << y << "\n";
+      }
+
+      //printf("\033c");
    }
-
-
-
-   /*
-   General usage of the dialogue function:
-   std::vector<std::string> answers = {"Yes", "YEah", "no", "maybe", "I don't know"};
-   std::string answer = dialogue(answers, "Can you repeat the question? ");
-   std::cout << "Your chosen answer was: " << answer << "\n";
-   */
 
    return 0;
 }
