@@ -9,21 +9,21 @@ int main()
    Map map;
 
    std::vector<std::vector<char>> customLevel1 = {
-      {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'},
-      {'#', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
-      {'#', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
-      {'#', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
-      {'#', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
-      {'#', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
-      {'#', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
-      {'#', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
-      {'#', '.', '.', '.', '.', '.', '.', '.', '.', '#'},
+      {'#', '.', '#', '#', '#', '#', '#', '#', '#', '#'},
+      {'#', '.', '.', '.', '#', '.', '#', '.', '.', '#'},
+      {'#', '.', '.', '.', '#', '.', '.', '.', '.', '#'},
+      {'#', '.', '.', '.', '#', '.', '#', '.', '.', '#'},
+      {'#', '.', '.', '.', '#', '.', '#', '.', '#', '#'},
+      {'#', '.', '#', '#', '#', '.', '#', '.', '#', '#'},
+      {'#', '.', '#', '.', '.', '.', '#', '.', '#', '#'},
+      {'#', '.', '.', '.', '.', '.', '#', '.', '#', '#'},
+      {'#', '.', '#', '.', '.', '.', '#', '.', '.', '.'},
       {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}
    };
 
    map.addCustomMap("customLevel1", customLevel1);
 
-   customLevel1 = map.drawEntity(player.name, customLevel1, 2, 2, player.symbol, true);
+   customLevel1 = map.drawEntity(player.name, customLevel1, 0, 1, player.symbol, true);
    map.addCustomMap("customLevel1", customLevel1);
 
    int x, y;
@@ -56,6 +56,8 @@ int main()
       std::cout << "Player X: " << playerX << " Player Y: " << playerY << "\n";
 
       if (map.wallCollision(playerX+x, playerY+y, mapWidth, mapHeight)) {
+         std::cout << "Sorry, you cannot move this way." << "\n";
+      } else if (map.objectCollision(customLevel1, playerX+x, playerY+y, '#')) {
          std::cout << "Sorry, you cannot move this way." << "\n";
       } else {
          customLevel1 = map.drawEntity(player.name, customLevel1, playerX+x, playerY+y, player.symbol, false);

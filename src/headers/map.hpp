@@ -18,6 +18,7 @@ class Map
         std::vector<std::vector<char>> getMap(std::string mapName) {return levelCollection[mapName];}
 
         bool wallCollision(int entityX, int entityY, int mapWidth, int mapHeight);
+        bool objectCollision(std::vector<std::vector<char>> map, int x, int y, char symbol);
 
         std::vector<std::vector<char>> drawEntity(std::string entityName,  std::vector<std::vector<char>> map, int x, int y, char symbol, bool initialDraw);
 

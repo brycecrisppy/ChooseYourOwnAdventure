@@ -19,7 +19,7 @@ void Map::printMap(std::vector<std::vector<char>> map)
 {
     for (int i=0; i<map.size(); i++) {
         for (int j=0; j<map[0].size(); j++) {
-            std::cout << map[i][j];
+            std::cout << " " << map[i][j] << " ";
         }
         std::cout << "\n";
     }
@@ -34,6 +34,15 @@ bool Map::wallCollision(int entityX, int entityY, int mapWidth, int mapHeight)
       } else {
           return false;
       }
+}
+
+bool Map::objectCollision(std::vector<std::vector<char>> map, int x, int y, char symbol) 
+{
+    if (map[x][y] == symbol) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 std::vector<std::vector<char>> Map::drawEntity(std::string entityName, std::vector<std::vector<char>> map, int x, int y, char symbol, bool initialDraw)
