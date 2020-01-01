@@ -55,9 +55,7 @@ int main()
 
       std::cout << "Player X: " << playerX << " Player Y: " << playerY << "\n";
 
-      if (playerX + x > mapWidth || playerX + x < 1) {
-         std::cout << "Sorry, you cannot move this way." << "\n";
-      } else if (playerY + y > mapHeight || playerY + y < 1) {
+      if (map.wallCollision(playerX+x, playerY+y, mapWidth, mapHeight)) {
          std::cout << "Sorry, you cannot move this way." << "\n";
       } else {
          customLevel1 = map.drawEntity(player.name, customLevel1, playerX+x, playerY+y, player.symbol, false);

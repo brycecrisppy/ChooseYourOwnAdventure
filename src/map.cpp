@@ -25,6 +25,17 @@ void Map::printMap(std::vector<std::vector<char>> map)
     }
 }
 
+bool Map::wallCollision(int entityX, int entityY, int mapWidth, int mapHeight)
+{
+      if (entityX >= mapWidth-1 || entityX < 1) {
+         return true;
+      } else if (entityY >= mapHeight-1 || entityY < 1) {
+          return true;
+      } else {
+          return false;
+      }
+}
+
 std::vector<std::vector<char>> Map::drawEntity(std::string entityName, std::vector<std::vector<char>> map, int x, int y, char symbol, bool initialDraw)
 {
     if (!initialDraw) {
