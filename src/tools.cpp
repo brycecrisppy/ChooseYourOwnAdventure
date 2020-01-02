@@ -10,7 +10,7 @@ std::string dialogue(std::vector<std::string> choices, std::string message)
 
     std::cout << message << "\n";
 
-    for (int i=0; i<choices.size(); i++) {
+    for (unsigned int i=0; i<choices.size(); i++) {
         std::transform(choices[i].begin(), choices[i].end(), choices[i].begin(),
         [](unsigned char c) {
             return std::tolower(c);
@@ -30,7 +30,7 @@ std::string dialogue(std::vector<std::string> choices, std::string message)
 
         std::vector<std::string> inpArray;
 
-        for(int i=0; i<choices.size(); i++) {
+        for(unsigned int i=0; i<choices.size(); i++) {
             if (choices[i].find(inp) == 0) {
                 inpArray.push_back(choices[i]);
             }
@@ -43,7 +43,7 @@ std::string dialogue(std::vector<std::string> choices, std::string message)
             break;
         } else {
             std::cout << "Which of the following did you mean: \n";
-            for (int i=0; i<inpArray.size(); i++) {
+            for (unsigned int i=0; i<inpArray.size(); i++) {
                 std::cout << inpArray[i] << "\n";
             }
         }
