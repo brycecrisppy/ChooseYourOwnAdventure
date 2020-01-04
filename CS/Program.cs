@@ -32,7 +32,7 @@ namespace textAdventure
             {
                 Map.PrintMap(customLevel1);
                 
-                List<string> answers = new List<string>() {"N", "E", "S", "W"};
+                List<string> answers = new List<string>() {"w", "d", "s", "a"};
                 string answer = Core.Dialogue(answers, "Which direction would you like to walk?", true);
 
                 Console.Write(answer);
@@ -40,12 +40,12 @@ namespace textAdventure
                 int modX; 
                 int modY;
 
-                if (answer == "n") 
+                if (answer == "w") 
                 {
                     modX = -1;
                     modY = 0;
                 } 
-                else if (answer == "e") 
+                else if (answer == "d") 
                 {
                     modX = 0;
                     modY = 1;
@@ -55,15 +55,15 @@ namespace textAdventure
                     modX = 1;
                     modY = 0;
                 } 
-                else if (answer == "w") 
+                else if (answer == "a") 
                 {
                     modX = 0;
                     modY = -1;
                 }
                 else
                 {
-                    modX = 5;
-                    modY = 5;
+                    modX = 0;
+                    modY = 0;
                 }
 
 
