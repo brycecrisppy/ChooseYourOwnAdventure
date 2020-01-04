@@ -49,7 +49,7 @@ namespace CoreTools
                 }
                 else if (inpArray.Count == 1)
                 {
-                    selectedChoice = inpArray[0];
+                    selectedChoice = inpArray[0].ToLower();
                     break;
                 }
                 else
