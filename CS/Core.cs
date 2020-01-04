@@ -23,7 +23,7 @@ namespace CoreTools
                         Thread.Sleep(250);
                     }
 
-                    cki = Console.ReadKey();
+                    cki = Console.ReadKey(true);
 
                     inp = cki.Key.ToString();
                 }
@@ -31,8 +31,10 @@ namespace CoreTools
                 {
                     inp = Console.ReadLine();
                 }
+                Console.WriteLine(inp);
                 
                 List<string> inpArray = new List<string>();
+ 
                 for (int i=0; i<choices.Count; i++)
                 {
                     if (choices[i].ToLower().StartsWith(inp.ToLower()))
