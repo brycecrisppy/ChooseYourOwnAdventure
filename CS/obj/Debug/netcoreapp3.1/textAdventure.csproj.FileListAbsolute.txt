@@ -1,0 +1,11 @@
+C:\Users\Mochamethod\Documents\Workspace\C\textAdventure\CS\bin\Debug\netcoreapp3.1\textAdventure.exe
+C:\Users\Mochamethod\Documents\Workspace\C\textAdventure\CS\bin\Debug\netcoreapp3.1\textAdventure.deps.json
+C:\Users\Mochamethod\Documents\Workspace\C\textAdventure\CS\bin\Debug\netcoreapp3.1\textAdventure.runtimeconfig.json
+C:\Users\Mochamethod\Documents\Workspace\C\textAdventure\CS\bin\Debug\netcoreapp3.1\textAdventure.runtimeconfig.dev.json
+C:\Users\Mochamethod\Documents\Workspace\C\textAdventure\CS\bin\Debug\netcoreapp3.1\textAdventure.dll
+C:\Users\Mochamethod\Documents\Workspace\C\textAdventure\CS\bin\Debug\netcoreapp3.1\textAdventure.pdb
+C:\Users\Mochamethod\Documents\Workspace\C\textAdventure\CS\obj\Debug\netcoreapp3.1\textAdventure.csprojAssemblyReference.cache
+C:\Users\Mochamethod\Documents\Workspace\C\textAdventure\CS\obj\Debug\netcoreapp3.1\textAdventure.AssemblyInfoInputs.cache
+C:\Users\Mochamethod\Documents\Workspace\C\textAdventure\CS\obj\Debug\netcoreapp3.1\textAdventure.AssemblyInfo.cs
+C:\Users\Mochamethod\Documents\Workspace\C\textAdventure\CS\obj\Debug\netcoreapp3.1\textAdventure.dll
+C:\Users\Mochamethod\Documents\Workspace\C\textAdventure\CS\obj\Debug\netcoreapp3.1\textAdventure.pdb

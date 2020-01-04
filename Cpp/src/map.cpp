@@ -32,7 +32,6 @@ bool Map::wallCollision(int entityX, int entityY, int mapWidth, int mapHeight)
       } else if (entityY >= mapHeight-1 || entityY < 1) {
           return true;
       } else {
-          return false;
       }
 }
 

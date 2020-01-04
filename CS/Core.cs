@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace CoreTools
 {
     static class Core 
     {
-        public static string Dialogue(List<string> choices, string message)
+        public static string Dialogue(List<string> choices, string message, bool continuousInp)
         {
             Console.WriteLine(message);
 
@@ -13,12 +14,28 @@ namespace CoreTools
 
             while (true)
             {
-                string inp = Console.ReadLine();
+                string inp;
+                if (continuousInp) 
+                {
+                    ConsoleKeyInfo cki = new ConsoleKeyInfo();
+                    while (Console.KeyAvailable == false) 
+                    {
+                        Thread.Sleep(250);
+                    }
+
+                    cki = Console.ReadKey();
+
+                    inp = cki.Key.ToString();
+                }
+                else 
+                {
+                    inp = Console.ReadLine();
+                }
                 
                 List<string> inpArray = new List<string>();
                 for (int i=0; i<choices.Count; i++)
                 {
-                    if (choices[i].ToLower().StartsWith(inp))
+                    if (choices[i].ToLower().StartsWith(inp.ToLower()))
                     {
                         inpArray.Add(choices[i]);
                     }

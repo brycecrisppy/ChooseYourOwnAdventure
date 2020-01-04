@@ -9,7 +9,7 @@ namespace textAdventure
         static void Main(string[] args)
         {
             List<string> acceptableAnswers = new List<string>() {"Yes", "Yeah", "No", "Nah"};
-            string answer = Core.Dialogue(acceptableAnswers, "Can you repeat the questions?");
+            string answer = Core.Dialogue(acceptableAnswers, "Can you repeat the questions?", false);
             Console.WriteLine(answer);
         }
     }
