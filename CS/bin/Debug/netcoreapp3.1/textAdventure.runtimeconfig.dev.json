@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\Mochamethod\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Mochamethod\\.nuget\\packages"
-    ]
-  }
-}

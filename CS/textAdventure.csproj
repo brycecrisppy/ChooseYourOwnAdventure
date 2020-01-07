@@ -3,6 +3,12 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamspace>SadConsoleGame</RootNamspace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.DesktopGL.Core" Version="3.8.0.1" />
+    <PackageReference Include="sadconsole" Version="8.99.0" />
+  </ItemGroup>
 
 </Project>

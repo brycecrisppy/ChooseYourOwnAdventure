@@ -1,14 +1,27 @@
-﻿using MapStructure;
+﻿using System.Security.AccessControl;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using MapStructure;
 using CoreTools;
 using Entity;
+
 using System;
+using PConsole = System.Console; 
 using System.Collections.Generic;
 
-namespace textAdventure
+using Microsoft.Xna.Framework;
+using MRectangle = Microsoft.Xna.Framework.Rectangle;
+using MColor = Microsoft.Xna.Framework.Color;
+
+using SadConsole;
+using SConsole = SadConsole.Console;
+
+namespace SadConsoleGame
 {
     class Program
     {
-        static void Main(string[] args)
+        static void ConsoleGame()
         {
             Player player = new Player("Bryce", 'B', 10);
 
@@ -35,7 +48,7 @@ namespace textAdventure
                 List<string> answers = new List<string>() {"w", "d", "s", "a"};
                 string answer = Core.Dialogue(answers, "Which direction would you like to walk?", true);
 
-                Console.Write(answer);
+                PConsole.Write(answer);
 
                 int modX; 
                 int modY;
@@ -69,13 +82,13 @@ namespace textAdventure
 
                 string xyPos = "X: {0} | Y: {1}";
                 xyPos = string.Format(xyPos, modX, modY);
-                Console.WriteLine(xyPos);
+                PConsole.WriteLine(xyPos);
 
                 int playerX = Map.GetXPosition(player.name);
                 int playerY = Map.GetYPosition(player.name);
                 string pos = "pX: {0} | pY: {1}";
                 pos = string.Format(pos, playerX, playerY);
-                Console.WriteLine(pos);
+                PConsole.WriteLine(pos);
 
                 List<List<char>> mapCopy = Map.GetMap("customLevel1");
 
@@ -84,11 +97,11 @@ namespace textAdventure
 
                 if (Map.WallCollision(playerX+modX, playerY+modY, mapWidth, mapHeight))
                 {
-                    Console.WriteLine("Wall! Sorry, you cannot move this way.");
+                    PConsole.WriteLine("Wall! Sorry, you cannot move this way.");
                 }
                 else if (Map.ObjectCollision(customLevel1, playerX+modX, playerY+modY, '#'))
                 {
-                    Console.WriteLine("Object! Sorry, you cannot move this way.");
+                    PConsole.WriteLine("Object! Sorry, you cannot move this way.");
                 }
                 else 
                 {
@@ -96,6 +109,33 @@ namespace textAdventure
                     Map.AddCustomMap("customLevel1", customLevel1);
                 }
             }   
+        }
+
+        static void Init()
+        {
+            SConsole sconsole = new SConsole(80, 25);
+            sconsole.FillWithRandomGarbage();
+            sconsole.Fill(
+                new MRectangle(3, 3, 23, 3), MColor.Violet, MColor.Black, 0, 0 
+            );
+            sconsole.Print(4, 4, "Hello World!");
+
+            SadConsole.Global.CurrentScreen = sconsole;
+        }
+
+        static void Main(string[] args)
+        {
+            // Run console version of the game.
+            //ConsoleGame();
+
+            // Run SadConsole version of the game.
+            SadConsole.Game.Create(80, 25);
+
+            SadConsole.Game.OnInitialize = Init;
+
+            SadConsole.Game.Instance.Run();
+            SadConsole.Game.Instance.Dispose();
+
         }
     }
 }
