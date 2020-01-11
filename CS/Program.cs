@@ -21,26 +21,31 @@ namespace SadConsoleGame
 {
     class Program
     {
-        static void ConsoleGame()
+        static void Init()
         {
             Player player = new Player("Bryce", 'B', 10);
 
-            List<List<char>> customLevel1 = new List<List<char>>();
-            customLevel1.Add(new List<char>() {'#', '.', '#', '#', '#', '#', '#', '#', '#', '#'});
-            customLevel1.Add(new List<char>() {'#', '.', '.', '.', '#', '.', '#', '.', '.', '#'});
-            customLevel1.Add(new List<char>() {'#', '.', '.', '.', '#', '.', '.', '.', '.', '#'});
-            customLevel1.Add(new List<char>() {'#', '.', '.', '.', '#', '.', '#', '.', '.', '#'});
-            customLevel1.Add(new List<char>() {'#', '.', '.', '.', '#', '.', '#', '.', '#', '#'});
-            customLevel1.Add(new List<char>() {'#', '.', '#', '#', '#', '.', '#', '.', '#', '#'});
-            customLevel1.Add(new List<char>() {'#', '.', '#', '.', '.', '.', '#', '.', '#', '#'});
-            customLevel1.Add(new List<char>() {'#', '.', '.', '.', '.', '.', '#', '.', '#', '#'});
-            customLevel1.Add(new List<char>() {'#', '.', '#', '.', '.', '.', '#', '.', '.', '.'});
-            customLevel1.Add(new List<char>() {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'});
+            List<List<Cell>> customLevel1 = new List<List<Cell>>();
+
+            Cell e = new Cell(MColor.White, MColor.Black, 0);
+            Cell w = new Cell(MColor.White, MColor.Black, 192);
+
+            customLevel1.Add(new List<Cell>() {w, e, w, w, w, w, w, w, w, w});
+            customLevel1.Add(new List<Cell>() {w, e, e, e, w, e, w, e, e, w});
+            customLevel1.Add(new List<Cell>() {w, e, e, e, w, e, e, e, e, w});
+            customLevel1.Add(new List<Cell>() {w, e, e, e, w, e, w, e, e, w});
+            customLevel1.Add(new List<Cell>() {w, e, e, e, w, e, w, e, w, w});
+            customLevel1.Add(new List<Cell>() {w, e, w, w, w, e, w, e, w, w});
+            customLevel1.Add(new List<Cell>() {w, e, w, e, e, e, w, e, w, w});
+            customLevel1.Add(new List<Cell>() {w, e, e, e, e, e, w, e, w, w});
+            customLevel1.Add(new List<Cell>() {w, e, w, e, e, e, w, e, e, e});
+            customLevel1.Add(new List<Cell>() {w, w, w, w, w, w, w, w, w, w});
 
             Map.AddCustomMap("customLevel1", customLevel1);
-            customLevel1 = Map.DrawEntity(player.name, customLevel1, 1, 1, player.symbol, true);
+            customLevel1 = Map.DrawEntity(player.name, customLevel1, 1, 1, new Cell(MColor.White, MColor.Black, 2), true);
             Map.AddCustomMap("customLevel1", customLevel1);
 
+            /*
             while (true)
             {
                 Map.PrintMap(customLevel1);
@@ -90,7 +95,7 @@ namespace SadConsoleGame
                 pos = string.Format(pos, playerX, playerY);
                 PConsole.WriteLine(pos);
 
-                List<List<char>> mapCopy = Map.GetMap("customLevel1");
+                List<List<Cell>> mapCopy = Map.GetMap("customLevel1");
 
                 int mapWidth = mapCopy[0].Count;
                 int mapHeight = mapCopy.Count;
@@ -99,26 +104,21 @@ namespace SadConsoleGame
                 {
                     PConsole.WriteLine("Wall! Sorry, you cannot move this way.");
                 }
-                else if (Map.ObjectCollision(customLevel1, playerX+modX, playerY+modY, '#'))
+                else if (Map.ObjectCollision(customLevel1, playerX+modX, playerY+modY, w))
                 {
                     PConsole.WriteLine("Object! Sorry, you cannot move this way.");
                 }
                 else 
                 {
-                    customLevel1 = Map.DrawEntity(player.name, customLevel1, playerX+modX, playerY+modY, player.symbol, false);
+                    customLevel1 = Map.DrawEntity(player.name, customLevel1, playerX+modX, playerY+modY, new Cell(MColor.White, MColor.Black, 2), false);
                     Map.AddCustomMap("customLevel1", customLevel1);
                 }
-            }   
-        }
-
-        static void Init()
-        {
+            }*/
+        
             SConsole sconsole = new SConsole(80, 25);
-            sconsole.FillWithRandomGarbage();
-            sconsole.Fill(
-                new MRectangle(3, 3, 23, 3), MColor.Violet, MColor.Black, 0, 0 
-            );
-            sconsole.Print(4, 4, "Hello World!");
+
+            Map.PrintMap(customLevel1);
+            sconsole.Children.Add(Map.parentMapConsole);
 
             SadConsole.Global.CurrentScreen = sconsole;
         }

@@ -1,5 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using SadConsole;
+using SConsole = SadConsole.Console;
+using MColor = Microsoft.Xna.Framework.Color;
 
 namespace MapStructure 
 {
@@ -9,17 +13,19 @@ namespace MapStructure
         private static int maxSize = 100;
         private static int levelAmt = 0;
 
-        private static Dictionary<string, List<List<char>>> levelCollection = new Dictionary<string, List<List<char>>>();
+        public static SConsole parentMapConsole = new SConsole(80, 25);
+
+        private static Dictionary<string, List<List<Cell>>> levelCollection = new Dictionary<string, List<List<Cell>>>();
 
         private static Dictionary<string, Dictionary<string, int>> entityPositions = new Dictionary<string, Dictionary<string, int>>();
 
-        public static List<List<char>> GetMap(string mapName) {return levelCollection[mapName];}
+        public static List<List<Cell>> GetMap(string mapName) {return levelCollection[mapName];}
 
         public static int GetXPosition(string entityName) {return entityPositions[entityName]["x"];}
 
         public static int GetYPosition(string entityName) {return entityPositions[entityName]["y"];}
 
-        static public void AddCustomMap(string mapName, List<List<char>> map)
+        static public void AddCustomMap(string mapName, List<List<Cell>> map)
         {
             try
             {
@@ -27,23 +33,21 @@ namespace MapStructure
             }
             catch (KeyNotFoundException e)
             {
-                Console.Write(e);
+                System.Console.Write(e);
                 levelCollection.Add(mapName, map);
             }
 
         }
 
-        static public void PrintMap(List<List<char>> map)
+        static public void PrintMap(List<List<Cell>> map)
         {
             for (int i=0; i<map.Count; i++)
             {
                 for (int j=0; j<map[0].Count; j++)
                 {
-                    string mapChar = " {0} ";
-                    mapChar = string.Format(mapChar, map[i][j]);
-                    Console.Write(mapChar);
+                    map[i][j].CopyAppearanceTo(parentMapConsole[i, j]);
                 }
-                Console.WriteLine("");
+                //Console.WriteLine("");
             }
         }
 
@@ -63,7 +67,7 @@ namespace MapStructure
             }
         }
 
-        static public bool ObjectCollision(List<List<char>> map, int x, int y, char symbol)
+        static public bool ObjectCollision(List<List<Cell>> map, int x, int y, Cell symbol)
         {
             if (map[x][y] == symbol)
             {
@@ -75,11 +79,12 @@ namespace MapStructure
             }
         }
 
-        static public List<List<char>> DrawEntity(string entityName, List<List<char>> map, int x, int y, char symbol, bool initialDraw)
+        static public List<List<Cell>> DrawEntity(string entityName, List<List<Cell>> map, int x, int y, Cell symbol, bool initialDraw)
         {
             if (!initialDraw) 
             {
-                map[entityPositions[entityName]["x"]][entityPositions[entityName]["y"]] = '.';
+                // TODO Draw entity using cell
+                map[entityPositions[entityName]["x"]][entityPositions[entityName]["y"]] = new Cell(MColor.White, MColor.Black, 0);
                 map[x][y] = symbol;
                 entityPositions[entityName]["x"] = x;
                 entityPositions[entityName]["y"] = y;
