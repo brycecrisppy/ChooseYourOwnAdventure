@@ -42,7 +42,7 @@ namespace SadConsoleGame
             customLevel1.Add(new List<Cell>() {w, w, w, w, w, w, w, w, w, w});
 
             Map.AddCustomMap("customLevel1", customLevel1);
-            customLevel1 = Map.DrawEntity(player.name, customLevel1, 1, 1, new Cell(MColor.White, MColor.Black, 2), true);
+            customLevel1 = Map.DrawEntity("player", customLevel1, 1, 1, new Cell(MColor.White, MColor.Black, 2), true);
             Map.AddCustomMap("customLevel1", customLevel1);
 
             /*
@@ -118,9 +118,9 @@ namespace SadConsoleGame
             SConsole sconsole = new SConsole(80, 25);
 
             Map.PrintMap(customLevel1);
-            sconsole.Children.Add(Map.parentMapConsole);
+            sconsole.Children.Add(Map());
 
-            SadConsole.Global.CurrentScreen = sconsole;
+            SadConsole.Global.CurrentScreen = Map.parentMapConsole;
         }
 
         static void Main(string[] args)

@@ -3,17 +3,27 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using SadConsole;
 using SConsole = SadConsole.Console;
+using SadConsole.Components;
+using SadConsole.Input;
 using MColor = Microsoft.Xna.Framework.Color;
 
 namespace MapStructure 
 {
-    static class Map
+    class Map: ContainerConsole
     {
         private static int size = 0;
         private static int maxSize = 100;
         private static int levelAmt = 0;
 
         public static SConsole parentMapConsole = new SConsole(80, 25);
+
+        public Map(bool console)
+        {
+            if (console)
+            {
+                return parentMapConsole;
+            } 
+        }
 
         private static Dictionary<string, List<List<Cell>>> levelCollection = new Dictionary<string, List<List<Cell>>>();
 
@@ -98,6 +108,46 @@ namespace MapStructure
             }
 
             return map;
+        }
+        
+        public override bool ProcessKeyboard(Keyboard info)
+        {
+            int modX, modY;
+
+            if (info.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.W))
+            {
+                modX = -1;
+                modY = 0;
+            }
+            else if (info.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.D))
+            {
+                modX = 0;
+                modY = 1;
+            }
+            else if (info.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.S))
+            {
+                modX = 1;
+                modY = 0;
+            }
+            else if (info.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.A))
+            {
+                modX = 0;
+                modY = -1;
+            }
+            else
+            {
+                modX = 0;
+                modY = 0;
+            }
+
+            int playerX = Map.GetXPosition("player");
+            int playerY = Map.GetYPosition("player");
+
+            List<List<Cell>> mapList = new List<List<Cell>>();
+            mapList = Map.DrawEntity("player", mapList, playerX+modX, playerY+modY, new Cell(MColor.White, MColor.Black, 2), false);
+            Map.AddCustomMap("customLevel1", mapList);
+
+            return true;
         }
     }
 }
