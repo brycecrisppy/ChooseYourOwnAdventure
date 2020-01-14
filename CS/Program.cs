@@ -81,7 +81,7 @@ namespace SadConsoleGame
                 if (Map.WallCollision(playerX+modX, playerY+modY, mapWidth, mapHeight))
                 {
                     PConsole.WriteLine("Wall! Sorry, you cannot move this way.");
-                }
+                } 
                 else if (Map.ObjectCollision(customLevel1, playerX+modX, playerY+modY, w))
                 {
                     PConsole.WriteLine("Object! Sorry, you cannot move this way.");
@@ -92,10 +92,9 @@ namespace SadConsoleGame
                     Map.AddCustomMap("customLevel1", customLevel1);
                 }
             }*/
-        
-            SConsole sconsole = new SConsole(80, 25);
 
             SadConsole.Global.CurrentScreen = new Map();
+            SadConsole.Global.CurrentScreen.IsFocused = true;
 
             Player player = new Player("Bryce", 'B', 10);
 

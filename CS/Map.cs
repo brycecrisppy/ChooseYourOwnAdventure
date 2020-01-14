@@ -139,6 +139,8 @@ namespace MapStructure
             mapList = Map.DrawEntity("player", mapList, playerX+modX, playerY+modY, new Cell(MColor.White, MColor.Black, 2), false);
             Map.AddCustomMap("customLevel1", mapList);
 
+            System.Console.WriteLine(info);
+
             return true;
         }
 
@@ -162,9 +164,8 @@ namespace MapStructure
 
             AddCustomMap("customLevel1", customLevel1);
 
-            
             parentMapConsole = new SConsole(80, 25);
-            this.Children.Add(parentMapConsole);
+            parentMapConsole.Parent = this;
         }
     }
 }
