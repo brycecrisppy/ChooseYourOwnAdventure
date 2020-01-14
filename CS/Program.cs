@@ -23,28 +23,6 @@ namespace SadConsoleGame
     {
         static void Init()
         {
-            Player player = new Player("Bryce", 'B', 10);
-
-            List<List<Cell>> customLevel1 = new List<List<Cell>>();
-
-            Cell e = new Cell(MColor.White, MColor.Black, 0);
-            Cell w = new Cell(MColor.White, MColor.Black, 192);
-
-            customLevel1.Add(new List<Cell>() {w, e, w, w, w, w, w, w, w, w});
-            customLevel1.Add(new List<Cell>() {w, e, e, e, w, e, w, e, e, w});
-            customLevel1.Add(new List<Cell>() {w, e, e, e, w, e, e, e, e, w});
-            customLevel1.Add(new List<Cell>() {w, e, e, e, w, e, w, e, e, w});
-            customLevel1.Add(new List<Cell>() {w, e, e, e, w, e, w, e, w, w});
-            customLevel1.Add(new List<Cell>() {w, e, w, w, w, e, w, e, w, w});
-            customLevel1.Add(new List<Cell>() {w, e, w, e, e, e, w, e, w, w});
-            customLevel1.Add(new List<Cell>() {w, e, e, e, e, e, w, e, w, w});
-            customLevel1.Add(new List<Cell>() {w, e, w, e, e, e, w, e, e, e});
-            customLevel1.Add(new List<Cell>() {w, w, w, w, w, w, w, w, w, w});
-
-            Map.AddCustomMap("customLevel1", customLevel1);
-            customLevel1 = Map.DrawEntity("player", customLevel1, 1, 1, new Cell(MColor.White, MColor.Black, 2), true);
-            Map.AddCustomMap("customLevel1", customLevel1);
-
             /*
             while (true)
             {
@@ -117,10 +95,16 @@ namespace SadConsoleGame
         
             SConsole sconsole = new SConsole(80, 25);
 
-            Map.PrintMap(customLevel1);
-            sconsole.Children.Add(Map());
+            SadConsole.Global.CurrentScreen = new Map();
 
-            SadConsole.Global.CurrentScreen = Map.parentMapConsole;
+            Player player = new Player("Bryce", 'B', 10);
+
+            List<List<Cell>> customLevel1 = new List<List<Cell>>();
+            customLevel1 = Map.GetMap("customLevel1");
+            customLevel1 = Map.DrawEntity("player", customLevel1, 1, 1, new Cell(MColor.White, MColor.Black, 2), true);
+            Map.AddCustomMap("customLevel1", customLevel1);
+
+            Map.PrintMap(customLevel1);
         }
 
         static void Main(string[] args)

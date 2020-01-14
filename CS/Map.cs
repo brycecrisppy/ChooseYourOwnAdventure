@@ -15,19 +15,11 @@ namespace MapStructure
         private static int maxSize = 100;
         private static int levelAmt = 0;
 
-        public static SConsole parentMapConsole = new SConsole(80, 25);
-
-        public Map(bool console)
-        {
-            if (console)
-            {
-                return parentMapConsole;
-            } 
-        }
-
         private static Dictionary<string, List<List<Cell>>> levelCollection = new Dictionary<string, List<List<Cell>>>();
 
         private static Dictionary<string, Dictionary<string, int>> entityPositions = new Dictionary<string, Dictionary<string, int>>();
+
+        public static SConsole parentMapConsole;
 
         public static List<List<Cell>> GetMap(string mapName) {return levelCollection[mapName];}
 
@@ -148,6 +140,31 @@ namespace MapStructure
             Map.AddCustomMap("customLevel1", mapList);
 
             return true;
+        }
+
+        public Map()
+        {
+            List<List<Cell>> customLevel1 = new List<List<Cell>>();
+
+            Cell e = new Cell(MColor.White, MColor.Black, 0);
+            Cell w = new Cell(MColor.White, MColor.Black, 192);
+
+            customLevel1.Add(new List<Cell>() {w, e, w, w, w, w, w, w, w, w});
+            customLevel1.Add(new List<Cell>() {w, e, e, e, w, e, w, e, e, w});
+            customLevel1.Add(new List<Cell>() {w, e, e, e, w, e, e, e, e, w});
+            customLevel1.Add(new List<Cell>() {w, e, e, e, w, e, w, e, e, w});
+            customLevel1.Add(new List<Cell>() {w, e, e, e, w, e, w, e, w, w});
+            customLevel1.Add(new List<Cell>() {w, e, w, w, w, e, w, e, w, w});
+            customLevel1.Add(new List<Cell>() {w, e, w, e, e, e, w, e, w, w});
+            customLevel1.Add(new List<Cell>() {w, e, e, e, e, e, w, e, w, w});
+            customLevel1.Add(new List<Cell>() {w, e, w, e, e, e, w, e, e, e});
+            customLevel1.Add(new List<Cell>() {w, w, w, w, w, w, w, w, w, w});
+
+            AddCustomMap("customLevel1", customLevel1);
+
+            
+            parentMapConsole = new SConsole(80, 25);
+            this.Children.Add(parentMapConsole);
         }
     }
 }
