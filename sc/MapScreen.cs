@@ -58,30 +58,36 @@ namespace SadConsoleGame
         public override bool ProcessKeyboard(SadConsole.Input.Keyboard info)
         {
             Point newPlayerPosition = PlayerPosition;
-            if (info.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.W))
+            while (info.KeysPressed.Count != 0) 
             {
-                newPlayerPosition += Directions.North;
-            }
-            else if (info.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.S))
-            {
-                newPlayerPosition += Directions.South;
-            }
+                if (info.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.W))
+                {
+                    newPlayerPosition += Directions.North;
+                }
+                else if (info.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.S))
+                {
+                    newPlayerPosition += Directions.South;
+                }
 
-            if (info.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.A))
-            {
-                newPlayerPosition += Directions.West;
-            }
-            else if (info.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.D))
-            {
-                newPlayerPosition += Directions.East;
-            }
+                if (info.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.A))
+                {
+                    newPlayerPosition += Directions.West;
+                }
+                else if (info.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.D))
+                {
+                    newPlayerPosition += Directions.East;
+                }
 
-            if (newPlayerPosition != PlayerPosition)
-            {
-                PlayerPosition = newPlayerPosition;
-                return true;
+                if (newPlayerPosition != PlayerPosition)
+                {
+                    PlayerPosition = newPlayerPosition;
+                    return true;
+                } 
+                else
+                {
+                    return false;
+                }
             }
-
             return false;
         }
     }
